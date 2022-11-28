@@ -1,0 +1,12 @@
+.cards__btn {
+  background-image: url(../../../images/btn-heart.svg);
+  width: 22px;
+  height: 19px;
+  align-self: center;
+  cursor: pointer;
+  transition: opacity ease-in-out 0.2s;
+}
+
+.cards__btn:hover {
+  opacity: .5;
+}

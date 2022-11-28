@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
+</head>
+
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header__logo"></div>
+    </header>
+
+    <main>
+      <section class="profile">
+        <div class="profile__container">
+          <img src="./images/profile-ico.jpg" alt="Фото пользователя" class="profile__ico">
+          <div class="profile__info">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <div class="profile__edit-btn link"></div>
+            <p class="profile__job">Исследователь океана</p>
+          </div>
+        </div>
+        <div class="profile__add-btn link"></div>
+      </section>
+
+      <section class="cards">
+        <ul class="cards__list">
+          <li class="cards__item">
+            <img src="./images/karachaevsk.jpg" alt="" class="cards__img">
+            <div class="cards__description">
+              <h2 class="cards__title">Карачаевск</h2>
+              <div class="cards__btn"></div>
+            </div>
+          </li>
+          <li class="cards__item">
+            <img src="./images/elbrus.jpg" alt="" class="cards__img">
+            <div class="cards__description">
+              <h2 class="cards__title">Эльбрус</h2>
+              <div class="cards__btn"></div>
+            </div>
+          </li>
+          <li class="cards__item">
+            <img src="./images/dombay.jpg" alt="" class="cards__img">
+            <div class="cards__description">
+              <h2 class="cards__title">Домбай</h2>
+              <div class="cards__btn"></div>
+            </div>
+          </li>
+          <li class="cards__item">
+            <img src="./images/karachaevsk.jpg" alt="" class="cards__img">
+            <div class="cards__description">
+              <h2 class="cards__title">Карачаево-Черкессия</h2>
+              <div class="cards__btn"></div>
+            </div>
+          </li>
+          <li class="cards__item">
+            <img src="./images/elbrus.jpg" alt="" class="cards__img">
+            <div class="cards__description">
+              <h2 class="cards__title">Эльбрус</h2>
+              <div class="cards__btn"></div>
+            </div>
+          </li>
+          <li class="cards__item">
+            <img src="./images/dombay.jpg" alt="" class="cards__img">
+            <div class="cards__description">
+              <h2 class="cards__title">Домбай</h2>
+              <div class="cards__btn"></div>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+    </footer>
+
+    <section class="popup">
+      <div class="popup__container">
+        <form action="submit" class="popup__form">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input type="text" class="popup__input-username" placeholder="Имя">
+          <input type="text" class="popup__input-work" placeholder="Деятельность">
+          <button class="popup__btn">Сохранить</button>
+        </form>
+        <div class="popup__close link"></div>
+      </div>
+    </section>
+  </div>
+  <script src="./scripts/index.js"></script>
+</body>
+
+</html>

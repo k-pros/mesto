@@ -4,6 +4,8 @@
   background-image: url(../../../images/close-ico.svg);
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #000;
+  border: 0;
   position: absolute;
   top: -40px;
   right: -40px;

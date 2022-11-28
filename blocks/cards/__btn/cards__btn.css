@@ -1,5 +1,7 @@
 .cards__btn {
   background-image: url(../../../images/btn-heart.svg);
+  background-color: #fff;
+  border: 0;
   width: 22px;
   height: 19px;
   align-self: center;

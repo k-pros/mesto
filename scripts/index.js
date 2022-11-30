@@ -6,6 +6,7 @@ let profileName = page.querySelector('.profile__name');
 let profileJob = page.querySelector('.profile__job');
 let nameInput = page.querySelector('.popup__input_type_name'); 
 let jobInput = page.querySelector('.popup__input_type_job');
+let formProfileEdit = page.querySelector('.popup__form') 
 
 // открытие формы редактирования профиля
 function openPopup () {
@@ -34,4 +35,4 @@ function handleFormSubmit (evt) {
   closePopup();
 }
 
-popup.addEventListener('submit', handleFormSubmit);
+formProfileEdit.addEventListener('submit', handleFormSubmit);

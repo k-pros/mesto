@@ -29,6 +29,7 @@
     <section class="cards">
       <ul class="cards__list">
         <li class="cards__item">
+          <button type="button" aria-label="Удалить" class="cards__trash link"></button>
           <img src="./images/karachaevsk.jpg" alt="Изображение" class="cards__img">
           <div class="cards__description">
             <h2 class="cards__title">Карачаевск</h2>
@@ -36,6 +37,7 @@
           </div>
         </li>
         <li class="cards__item">
+          <button type="button" aria-label="Удалить" class="cards__trash link"></button>
           <img src="./images/elbrus.jpg" alt="Изображение" class="cards__img">
           <div class="cards__description">
             <h2 class="cards__title">Эльбрус</h2>
@@ -78,9 +80,9 @@
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>
 
-  <div class="popup">
+  <div class="popup popup_type_profile-edit">
     <div class="popup__container">
-      <form name="profile-edit" class="popup__form">
+      <form name="profile-edit" class="popup__form popup__form_type_profile-edit">
         <h2 class="popup__title">Редактировать профиль</h2>
         <input type="text" name="input-name" class="popup__input popup__input_type_name" placeholder="Имя">
         <input type="text" name="input-job" class="popup__input popup__input_type_job" placeholder="Деятельность">
@@ -88,6 +90,23 @@
       </form>
       <button type="button" aria-label="Закрыть" class="popup__close link"></button>
     </div>
+  </div>
+  <div class="popup popup_type_add-card">
+    <div class="popup__container">
+      <form name="add-card" class="popup__form popup__form_type_add-card">
+        <h2 class="popup__title">Новое место</h2>
+        <input type="text" name="input-name-card" class="popup__input popup__input_type_name-card" placeholder="Название">
+        <input type="text" name="input-img-link" class="popup__input popup__input_type_img-link" placeholder="Ссылка на картинку">
+        <button type="submit" class="popup__btn">Сохранить</button>
+      </form>
+      <button type="button" aria-label="Закрыть" class="popup__close link"></button>
+    </div>
+  </div>
+  <div class="popup popup_type_image">
+    <figure class="popup__image">
+      <img src="./images/elbrus.jpg" alt="Эльбрус">
+      <figcaption class="popup__img-description">Эльбрус</figcaption>
+    </figure>
   </div>
   <script src="./scripts/index.js"></script>
 </body>

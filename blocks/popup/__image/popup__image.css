@@ -1,0 +1,7 @@
+.popup__image {
+  width: 75vh;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

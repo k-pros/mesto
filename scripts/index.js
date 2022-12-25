@@ -20,6 +20,7 @@ const newCardLinkInput = page.querySelector('.popup__input_type_img-link');
 // popup с изображением
 const popupVewImage = page.querySelector('.popup_type_image');
 const imgPopup = popupVewImage.querySelector('.popup__img'); 
+const imgTitlePopup = popupVewImage.querySelector('.popup__img-title');
 
 // открытие popup
 function openPopup (popupName) {
@@ -54,7 +55,7 @@ const createCards = (cardName, cardImage) => {
   currentImage.addEventListener('click', () => {
     imgPopup.src = cardImage;
     imgPopup.alt = cardName;
-    popupVewImage.querySelector('.popup__img-title').textContent = cardName;
+    imgTitlePopup.textContent = cardName;
     openPopup(popupVewImage);
 
   });

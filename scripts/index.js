@@ -1,34 +1,6 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]; 
-
 const page = document.querySelector('.page');
 const btnProfileEdit = page.querySelector('.profile__edit-btn');
 const btnAddCard = page.querySelector('.profile__add-btn');
-const popup = page.querySelector('.popup');
 const popupClose = page.querySelectorAll('.popup__close');
 
 // форма редактирования профиля
@@ -46,7 +18,8 @@ const newCardNameInput = page.querySelector('.popup__input_type_name-card');
 const newCardLinkInput = page.querySelector('.popup__input_type_img-link');
 
 // popup с изображением
-const popupImage = page.querySelector('.popup_type_image');
+const popupVewImage = page.querySelector('.popup_type_image');
+const imgPopup = popupVewImage.querySelector('.popup__img'); 
 
 // открытие popup
 function openPopup (popupName) {
@@ -60,7 +33,10 @@ const cardsList = document.querySelector('.cards__list');
 const createCards = (cardName, cardImage) => {
   const cardsItem = cardsTemplate.querySelector('.cards__item').cloneNode(true);
   cardsItem.querySelector('.cards__title').textContent = cardName;
-  cardsItem.querySelector('.cards__img').src = cardImage;
+
+  const currentImage = cardsItem.querySelector('.cards__img');
+  currentImage.src = cardImage;
+  currentImage.alt = cardName;
 
   // обработчик кнопки like
   const btnLike = cardsItem.querySelector('.cards__btn');
@@ -75,11 +51,11 @@ const createCards = (cardName, cardImage) => {
   });
 
   // открытие popup с изображением
-  const currentImage = cardsItem.querySelector('.cards__img');
   currentImage.addEventListener('click', () => {
-    openPopup(popupImage);
-    popupImage.querySelector('.popup__img').src = cardImage;
-    popupImage.querySelector('.popup__img-title').textContent = cardName;
+    imgPopup.src = cardImage;
+    imgPopup.alt = cardName;
+    popupVewImage.querySelector('.popup__img-title').textContent = cardName;
+    openPopup(popupVewImage);
 
   });
   
@@ -98,11 +74,11 @@ initialCards.forEach(item => {
 
 // открытие формы редактирования профиля
 const openProfileEdit = () => {
-  openPopup(popupProfileEdit);
-
   // передача в поля формы значений из профайла
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
+
+  openPopup(popupProfileEdit);
 }
 
 // закрытие popup

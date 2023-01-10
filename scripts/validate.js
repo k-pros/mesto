@@ -20,22 +20,28 @@ const checkInputValidity = (formElement, inputElement, config) => {
   } else {
     hideInputError(formElement, inputElement, config);
   }
-  console.log(inputElement.validity);
 }
 
 const hasInvalidInput = (inputList) => {
  return inputList.some((inputElement) => !inputElement.validity.valid);
 }
 
+const toggleButtonEnable = (buttonElement, config) => {
+  buttonElement.classList.add(config.inactiveButtonClass);
+  buttonElement.disabled = true;
+}
+
+const toggleButtonDisable = (buttonElement, config) => {
+  buttonElement.classList.remove(config.inactiveButtonClass);
+  buttonElement.disabled = false;
+}
+
 const toggleButtonState = (inputList, buttonElement, config) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(config.inactiveButtonClass);
-    buttonElement.disabled = true;
+    toggleButtonEnable(buttonElement, config);
   } else {
-    buttonElement.classList.remove(config.inactiveButtonClass);
-    buttonElement.disabled = false;
+    toggleButtonDisable(buttonElement, config);
   }
-  console.log(inputList);
 }
 
 const setEventListeners = (formElement, config) => {

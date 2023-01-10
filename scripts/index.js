@@ -1,3 +1,12 @@
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_visible'
+}
+
 const page = document.querySelector('.page');
 const btnProfileEdit = page.querySelector('.profile__edit-btn');
 const btnAddCard = page.querySelector('.profile__add-btn');
@@ -32,8 +41,8 @@ function closePopup (popupName) {
 
 // //обработчик нажатия клавиши Esc
 function keyEscHandler (evt) {
-  const currentPopup = page.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
+    const currentPopup = page.querySelector('.popup_opened');
     closePopup(currentPopup);
   }
 }
@@ -41,11 +50,10 @@ function keyEscHandler (evt) {
 // закрытие popup при клике по overlay и крестику
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      closePopup(popup);
-    }
-    // если клик по крестику
-    if (evt.target.classList.contains('popup__close')) {
+    const overlay = (evt.target.classList.contains('popup_opened'));
+    const buttonClose = (evt.target.classList.contains('popup__close')); // кнопка - крестик
+
+    if (overlay || buttonClose) {
       closePopup(popup);
     }
   });
@@ -60,11 +68,11 @@ function openPopup (popupName) {
 }
 
 // создание карточек из массива при загрузке страницы
-const cardsTemplate = document.querySelector('#cards-template').content;
+const cardsTemplate = document.querySelector('#cards-template').content.querySelector('.cards__item');
 const cardsList = document.querySelector('.cards__list');
 
-const createCards = (cardName, cardImage) => {
-  const cardsItem = cardsTemplate.querySelector('.cards__item').cloneNode(true);
+const createCard = (cardName, cardImage) => {
+  const cardsItem = cardsTemplate.cloneNode(true);
   cardsItem.querySelector('.cards__title').textContent = cardName;
 
   const currentImage = cardsItem.querySelector('.cards__img');
@@ -73,7 +81,7 @@ const createCards = (cardName, cardImage) => {
 
   // обработчик кнопки like
   const btnLike = cardsItem.querySelector('.cards__btn');
-  btnLike.addEventListener('click', () => {
+    btnLike.addEventListener('click', () => {
     btnLike.classList.toggle('cards__btn_active');
   });
 
@@ -95,13 +103,13 @@ const createCards = (cardName, cardImage) => {
 }
 
 // отображение карточек
-const renderCards = (cardName, cardImage) => {
-  cardsList.prepend(createCards(cardName, cardImage));
+const renderCard = (cardName, cardImage) => {
+  cardsList.prepend(createCard(cardName, cardImage));
 }
 
 // загрузка карточек из массива
 initialCards.forEach(item => {
-  renderCards(item.name, item.link);
+  renderCard(item.name, item.link);
 });
 
 // открытие формы редактирования профиля
@@ -133,18 +141,15 @@ function handleFormAddCard (evt) {
   evt.preventDefault(); 
   renderCards(newCardNameInput.value, newCardLinkInput.value);
   closePopup(popupAddCard); 
-  formAddCard.reset();
+  formAddCard.reset(); // обнуление полей ввода при после добавления карточки
+  
+  // делаем кнопку добавления карточки неактивной. 
+  const addButton = formAddCard.querySelector('.popup__button');
+  toggleButtonEnable(addButton, config);
 }
 
 formAddCard.addEventListener('submit', handleFormAddCard);
 
 // включение валидации вызовом enableValidation
 // все настройки передаются при вызове
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_visible'
-});
+enableValidation(config);

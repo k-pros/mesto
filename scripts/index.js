@@ -121,8 +121,17 @@ const openProfileEdit = () => {
   openPopup(popupProfileEdit);
 }
 
-btnProfileEdit.addEventListener('click', openProfileEdit); // обработчик кнопки редактирования профайла
-btnAddCard.addEventListener('click', () => openPopup(popupAddCard)); // обработчик кнопки добавления карточки
+// обработчик кнопки редактирования профайла
+btnProfileEdit.addEventListener('click', openProfileEdit);
+
+// обработчик кнопки добавления карточки
+btnAddCard.addEventListener('click', () => {
+  // делаем кнопку добавления карточки неактивной перед открытием popup
+  const saveButton = formAddCard.querySelector('.popup__button');
+  disableButton(saveButton, config);
+
+  openPopup(popupAddCard);
+});
 
 // обработчик отправки формы редактирования профайла
 const handleFormProfileEdit = (evt) => {
@@ -139,13 +148,9 @@ formProfileEdit.addEventListener('submit', handleFormProfileEdit);
 // обработчик формы добавления новой карточки
 function handleFormAddCard (evt) {
   evt.preventDefault(); 
-  renderCards(newCardNameInput.value, newCardLinkInput.value);
+  renderCard(newCardNameInput.value, newCardLinkInput.value);
   closePopup(popupAddCard); 
-  formAddCard.reset(); // обнуление полей ввода при после добавления карточки
-  
-  // делаем кнопку добавления карточки неактивной. 
-  const addButton = formAddCard.querySelector('.popup__button');
-  toggleButtonEnable(addButton, config);
+  formAddCard.reset(); // обнуление полей ввода при после добавления карточки 
 }
 
 formAddCard.addEventListener('submit', handleFormAddCard);

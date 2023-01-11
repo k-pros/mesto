@@ -23,32 +23,30 @@ const checkInputValidity = (formElement, inputElement, config) => {
 }
 
 const hasInvalidInput = (inputList) => {
- return inputList.some((inputElement) => !inputElement.validity.valid);
+  return inputList.some((inputElement) => !inputElement.validity.valid);
 }
 
-const toggleButtonEnable = (buttonElement, config) => {
+const disableButton = (buttonElement, config) => {
   buttonElement.classList.add(config.inactiveButtonClass);
   buttonElement.disabled = true;
 }
 
-const toggleButtonDisable = (buttonElement, config) => {
+const enableButton = (buttonElement, config) => {
   buttonElement.classList.remove(config.inactiveButtonClass);
   buttonElement.disabled = false;
 }
 
 const toggleButtonState = (inputList, buttonElement, config) => {
   if (hasInvalidInput(inputList)) {
-    toggleButtonEnable(buttonElement, config);
+    disableButton(buttonElement, config);
   } else {
-    toggleButtonDisable(buttonElement, config);
+    enableButton(buttonElement, config);
   }
 }
 
 const setEventListeners = (formElement, config) => {
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
-
-  toggleButtonState(inputList, buttonElement, config);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {

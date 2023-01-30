@@ -72,9 +72,7 @@ btnProfileEdit.addEventListener('click', openProfileEdit);
 // обработчик кнопки добавления карточки
 btnAddCard.addEventListener('click', () => {
   // делаем кнопку добавления карточки неактивной перед открытием popup
-  const saveButton = formAddCard.querySelector('.popup__button');
   addCardFormValidator.disableSubmitButton();
-
   openPopup(popupAddCard);
 });
 

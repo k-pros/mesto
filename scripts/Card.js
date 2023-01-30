@@ -1,4 +1,5 @@
 import {openPopup} from './utils.js';
+import {popupVewImage, imgPopup, imgTitlePopup} from './constants.js'
 
 class Card {
   constructor({name, link}, selectorTemplate) {
@@ -24,14 +25,11 @@ class Card {
   // обработчик кнопки удаления карточки
   _handleTrashButton() {
     this._newCard.remove();
+    this._newCard = null;
   }
 
   // обработчик открытия popup с изображением
-  _handlePopViewImage() {
-    const popupVewImage = document.querySelector('.popup_type_image');
-    const imgPopup = popupVewImage.querySelector('.popup__img'); 
-    const imgTitlePopup = popupVewImage.querySelector('.popup__img-title');
-
+  _handlePopupViewImage() {
     imgPopup.src = this._link;
     imgPopup.alt = this._name;
     imgTitlePopup.textContent = this._name;
@@ -49,7 +47,7 @@ class Card {
 
     // слушатель клика по изображению
     this._cardImage = this._newCard.querySelector('.cards__img');
-    this._cardImage.addEventListener('click', () => this._handlePopViewImage());  
+    this._cardImage.addEventListener('click', () => this._handlePopupViewImage());  
   }
   
   // наполнение шаблона карточки данными

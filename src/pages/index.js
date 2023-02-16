@@ -1,3 +1,5 @@
+import './index.css';
+
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
@@ -102,12 +104,14 @@ const popupFormAddCart = new PopupWithForms({
 // установка слушателя на попап с формой добавления новой карточки
 popupFormAddCart.setEventListeners();
 
-// обработчик кнопки добавления карточки
-btnAddCard.addEventListener('click', () => {
-  // делаем кнопку добавления карточки неактивной перед открытием попапа
-  addCardFormValidator.disableSubmitButton();
+// открытие попапа с формой добавления новой карточки
+const openPopupAddCard = () => {
+  addCardFormValidator.disableSubmitButton(); // делаем кнопку добавления карточки неактивной перед открытием попапа
   popupFormAddCart.open(); // открытие попапа
-});
+}
+
+// обработчик кнопки добавления карточки
+btnAddCard.addEventListener('click', openPopupAddCard);
 
 // создание экземпляра валидатора формы редактирования профайла
 const editFormValidator = new FormValidator (config, formProfileEdit);

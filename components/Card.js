@@ -1,17 +1,18 @@
-import {openPopup} from './utils.js';
-import {popupVewImage, imgPopup, imgTitlePopup} from './constants.js'
-
-class Card {
-  constructor({name, link}, selectorTemplate) {
-    this._name = name;
-    this._link = link;
+// класс Card отвечает за создание карточки
+export default class Card {
+  constructor({data, handleCardClick}, selectorTemplate) {
+    this._name = data.name;
+    this._link = data.link;
     this._selectorTemplate = selectorTemplate;
+    this._handleCardClick = handleCardClick;
   }
 
   // получение шаблона карточки
   _getTemplateCard() {
-    const card = this._selectorTemplate
-      .content.querySelector('.cards__item')
+    const card = document
+      .querySelector(this._selectorTemplate)
+      .content
+      .querySelector('.cards__item')
       .cloneNode(true);
 
     return card;
@@ -28,18 +29,10 @@ class Card {
     this._newCard = null;
   }
 
-  // обработчик открытия popup с изображением
-  _handlePopupViewImage() {
-    imgPopup.src = this._link;
-    imgPopup.alt = this._name;
-    imgTitlePopup.textContent = this._name;
-    openPopup(popupVewImage);
-  }
-
   _setEventListeners() {
     // слушатель кнопки like
     this._btnLike = this._newCard.querySelector(".cards__btn");
-    this._btnLike.addEventListener("click", () => this._handleLikeButton());
+    this._btnLike.addEventListener('click', () => this._handleLikeButton());
 
     // слушатель кнопки удаления карточки
     this._btnTrash = this._newCard.querySelector('.cards__trash');
@@ -47,7 +40,7 @@ class Card {
 
     // слушатель клика по изображению
     this._cardImage = this._newCard.querySelector('.cards__img');
-    this._cardImage.addEventListener('click', () => this._handlePopupViewImage());  
+    this._cardImage.addEventListener('click', () => this._handleCardClick());  
   }
   
   // наполнение шаблона карточки данными
@@ -70,5 +63,3 @@ class Card {
     return this._newCard;
   }
 }
-
-export default Card;

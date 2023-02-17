@@ -1,4 +1,4 @@
-class FormValidator {
+export default class FormValidator {
   constructor(config, formElement) {
     this._config = config;
     this._formElement = formElement;
@@ -72,9 +72,13 @@ class FormValidator {
     });
   }
 
+  // метод сброса сообщений об ошибках со всех инпутов формы  
+  resetValidation() {
+    this._toggleButtonState(); // управление состоянием кнопки сабмита
+    this._inputList.forEach((inputElement) => this._hideInputError(inputElement)); // скрытие ошибок
+  }
+
   enableValidation() {
     this._setEventListeners();
   }
 }
-
-export default FormValidator;

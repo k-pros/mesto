@@ -72,13 +72,18 @@ popupFormProfileEdit.setEventListeners();
 // открытие попапа с формой редактирования профайла
 const openPopupProfileEdit = () => {
   // передача в поля формы значений из профайла
-  nameInput.value = userInfo.getUserInfo().profileName;
-  jobInput.value = userInfo.getUserInfo().profileJob;
+  const infoObject = userInfo.getUserInfo();
+  nameInput.value = infoObject.profileName;
+  jobInput.value = infoObject.profileJob; 
+
   popupFormProfileEdit.open(); // открытие попапа
 }
 
 // установка слушателя на кнопку редактирования профайла
-btnProfileEdit.addEventListener('click', openPopupProfileEdit);
+btnProfileEdit.addEventListener('click', () => {
+  openPopupProfileEdit();
+  editFormValidator.resetValidation(); // сброс ошибок с инпутов
+});
 
 
 // создание экземпляра попапа с формой добавления новой карточки
@@ -90,15 +95,10 @@ const popupFormAddCart = new PopupWithForms({
       name: inputData['input-name-card'],
       link: inputData['input-img-link']
     }
-
-    const newCard = new Section({
-      items: []
-    }, selectorCardList);
-    
-    const card = renderCard(cardData); // генерация разметки карточки
-    newCard.addItem(card); // добавление карточки в контейнер
+    const newCard = renderCard(cardData); // генерация разметки карточки
+    cardList.addItem(newCard); // добавление карточки в контейнер
     popupFormAddCart.close(); // закрытие попапа
-    }
+  }
 });
 
 // установка слушателя на попап с формой добавления новой карточки
@@ -111,7 +111,10 @@ const openPopupAddCard = () => {
 }
 
 // обработчик кнопки добавления карточки
-btnAddCard.addEventListener('click', openPopupAddCard);
+btnAddCard.addEventListener('click', () => {
+  openPopupAddCard();
+  addCardFormValidator.resetValidation(); // сброс ошибок с инпутов
+});
 
 // создание экземпляра валидатора формы редактирования профайла
 const editFormValidator = new FormValidator (config, formProfileEdit);

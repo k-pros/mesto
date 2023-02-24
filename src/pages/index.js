@@ -33,7 +33,7 @@ const renderCard = (cardData) => {
   const card = new Card({
     data: cardData, 
     // обработчик открытия попапа с изображением
-    handleCardClick: () => {  
+    handleCardClick: () => {
       popupWithImage.open(cardData);
     }},
     selectorCardTemplate);

@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: { index: path.resolve(__dirname, "src", "pages", "index.js") },
+  devtool: 'inline-source-map',
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[contenthash].js",
@@ -17,6 +18,7 @@ module.exports = {
     port: 8080,
     open: true,
     hot: true,
+    watchFiles: ['*/**/*.html']
   },
   module: {
     rules: [

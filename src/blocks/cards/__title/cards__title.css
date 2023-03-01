@@ -1,5 +1,6 @@
 .cards__title {
   margin: 0;
+  /* justify-self: center; */
   color: #000;
   text-overflow: ellipsis;
   white-space: nowrap;

@@ -5,6 +5,7 @@
   width: 22px;
   height: 19px;
   align-self: center;
+  padding: 0;
   cursor: pointer;
   transition: opacity ease-in-out 0.2s;
 }

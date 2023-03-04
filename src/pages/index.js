@@ -131,9 +131,11 @@ popupFormEditProfile.setEventListeners();
 const openPopupProfileEdit = () => {
   // передача в поля формы значений из профайла
   const infoObject = userInfo.getUserInfo();
-  nameInput.value = infoObject.profileName;
-  jobInput.value = infoObject.profileJob;
+  // nameInput.value = infoObject.profileName;
+  // jobInput.value = infoObject.profileJob;
 
+  console.log(infoObject);
+  popupFormEditProfile._setInputValues(infoObject);
   popupFormEditProfile.open(); // открытие попапа
 };
 // установка слушателя на кнопку редактирования профайла
@@ -215,8 +217,8 @@ const popupWithConfirmation = new PopupWithConfirmation({
         card = null;
         popupWithConfirmation.close()
       })
-        .catch((err) => console.log(err))   
-  }
+      .catch((err) => console.log(err))   
+    }
 });
 popupWithConfirmation.setEventListeners();
 

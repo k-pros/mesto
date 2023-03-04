@@ -19,6 +19,11 @@ export default class PopupWithForms extends Popup {
     return this._formValues;
   }
 
+  // метод записывает данные в поля формы.
+  _setInputValues(data) {
+    this._inputList.forEach((input) => input.value = data[input.name]);
+  }
+
   // метод изменяет текст кнопки сабмита во время ожидания ответа сервера после отправки данных
   waitLoading(TextButton) {
     // проверка передан ли параметр
@@ -29,13 +34,6 @@ export default class PopupWithForms extends Popup {
     }
   }
   
-  // waitLoading(isLoading, TextButton) {
-  //   if(isLoading){ 
-  //     this._submitButton.textContent = TextButton;
-  //   } else {
-  //     this._submitButton.textContent = this._submitButtonDefaultText; // возвращение исходного текста кнопки после ответа сервера 
-  //   }
-  // }
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {

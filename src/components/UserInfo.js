@@ -9,8 +9,8 @@ export default class UserInfo {
   // метод возвращает объект с данными пользователя
   getUserInfo() {
     const userInfo = {
-      profileName: this._profileName.textContent,
-      profileJob: this._profileJob.textContent,
+      name: this._profileName.textContent,
+      about: this._profileJob.textContent,
     };
     return userInfo;
   }
